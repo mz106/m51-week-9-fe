@@ -61,9 +61,31 @@ export const getAllUsers = async () => {
       },
     });
 
-    const data = response.json();
+    const data = await response.json();
 
     return data.users;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const authCheck = async (jwt) => {
+  try {
+    const response = await fetch("http://localhost:5001/users/authCheck", {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
+    console.log("hello world from index utils authcheck");
+    const data = await response.json();
+    console.log("authCheck utils data: ", data);
+
+    // data.user.token = jwt;
+
+    return data.user;
   } catch (error) {
     console.log(error);
   }

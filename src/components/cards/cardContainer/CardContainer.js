@@ -3,7 +3,8 @@ import Card from "../card/Card";
 
 import "./CardContainer.css";
 
-const CardContainer = () => {
+const CardContainer = ({ users }) => {
+  console.log("cardcontainer users: ", users);
   const fakeUsers = [
     "bill",
     "jane",
@@ -18,7 +19,7 @@ const CardContainer = () => {
   return (
     <div className="card-container">
       <div className="card-wrapper">
-        {fakeUsers.map((user, index) => (
+        {users.map((user, index) => (
           <Card user={user} />
         ))}
       </div>
